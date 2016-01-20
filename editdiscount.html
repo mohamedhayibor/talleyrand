@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Grocery Shop | Welcome</title>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- slate compiled and minified CSS -->
+	<link rel="stylesheet" href="http://bootswatch.com/slate/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/main.js"></script>
+</head>
+<body onload="getOptions();">
+	<div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation"><a href="index.html">All Discounts</a></li>
+            <li role="presentation" class="active"><a href="adddiscount.html">Add Discount</a></li>
+            <li role="presentation"><a href="aisles.html">Manage Aisles</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Grocery Shop</h3>
+      </div>
+
+      <div class="row marketing">
+        <div class="col-lg-12">
+          <h4>Edit Discount</h4>
+         <form id="edit_discount">
+            <div class="form-group">
+              <label>Discount product name</label>
+              <input type="text" name="discount_name" class="form-control" id="discount_name" placeholder="Discount Name">
+            </div>
+
+            <div class="form-group">
+              <label>Aisle</label>
+              <select name="aisle" class="form-control" id="aisle">
+                <!-- to insert options like : <option value="pastry">Pastry</option>  | fetching all current Aisle names -->
+              </select>
+            </div>
+
+                <!-- discount goes from 1% to 99% -->
+            <div class="form-group">
+              <label>Percentage Discount</label>
+              <input type="number" min="1" max="99" name="percentage_discount" class="form-control" id="percentage_discount" placeholder="percentage discount">
+            </div>
+
+           
+            <button type="submit" class="btn btn-primary">Submit</button>
+         </form>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p class="pull-right">&copy; World Best Grocer 2016</p>
+      </footer>
+
+    </div> <!-- End of container -->
+</body>
+</html>
