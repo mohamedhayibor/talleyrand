@@ -15,9 +15,10 @@ $(document).ready(function () {
 
 const apiKey = '*** Get your own API and Mongolab account ****';
 
-// to fetch all Aisle names from database (db)  
+// to fetch all Aisle names from database (db)
+// you can think of mongoDB collections as tables to a relational database
 function getAisles() {
-	$.get('https://api.mongolab.com/api/1/databases/groceryshop/collections/aisles?apiKey=' + apiKey, function (data) {
+	$.get('https://api.mongolab.com/api/1/databases/{{your database}}/collections/{{your collection}}?apiKey=' + apiKey, function (data) {
 		var output = '<ul class="list-group">';
 		$.each(data, function (key, data) {
 			output += '<li class="list-group-item aisle">' + '<div class="pull-right"><a class="btn btn-primary btn-edit-aisle" data-aisle-id="'+ data._id.$oid +'">Edit</a> <a class="btn btn-danger btn-delete-aisle" data-aisle-id="'+ data._id.$oid +'">Delete</a></div>'
@@ -34,7 +35,7 @@ function getAisles() {
 function addAisle() {
 	var aisle_name = $('#aisle_name').val();
 	$.ajax({
-		url: "https://api.mongolab.com/api/1/databases/groceryshop/collections/aisles?apiKey=" + apiKey,
+		url: "https://api.mongolab.com/api/1/databases/{{your database}}/collections/{{your collection}}?apiKey=" + apiKey,
 		data: JSON.stringify({ "aisle_name": aisle_name }),
 		type: 'POST',
 		contentType: 'application/json',
@@ -53,7 +54,7 @@ function editAisle () {
 	var aisle_id = sessionStorage.getItem('currentAisleId');
 	var aisle_name = $('#aisle_name').val();
 	$.ajax({
-		url: "https://api.mongolab.com/api/1/databases/groceryshop/collections/aisles/" + aisle_id + "?apiKey=" + apiKey,
+		url: "https://api.mongolab.com/api/1/databases/{{your database}}/collections/{{your collection}}/" + aisle_id + "?apiKey=" + apiKey,
 		data: JSON.stringify({ "aisle_name": aisle_name }),
 		type: 'PUT',
 		contentType: 'application/json',
@@ -79,7 +80,7 @@ function setAisle () {
 
 function getAisle () {
 	var aisle_id = sessionStorage.getItem('currentAisleId');
-	$.get('https://api.mongolab.com/api/1/databases/groceryshop/collections/aisles/' + aisle_id + '?apiKey=' + apiKey, function (data) {
+	$.get('https://api.mongolab.com/api/1/databases/{{your database}}/collections/{{your collection}}/' + aisle_id + '?apiKey=' + apiKey, function (data) {
 		$('#aisle_name').val(data.aisle_name);
 	})
 }
@@ -88,7 +89,7 @@ function deleteAisle () {
 	var aisle_id = $(this).data('aisle-id');
 
 	$.ajax({
-		url: "https://api.mongolab.com/api/1/databases/groceryshop/collections/aisles/" + aisle_id + "?apiKey=" + apiKey,
+		url: "https://api.mongolab.com/api/1/databases/{{your database}}/collections/{{your collection}}/" + aisle_id + "?apiKey=" + apiKey,
 		type: 'DELETE',
 		async: true,
 		timeout: 30 * 1000,
@@ -106,7 +107,7 @@ function deleteAisle () {
 // rendering all options on adding discount page
 
 function getOptions () {
-	$.get('https://api.mongolab.com/api/1/databases/groceryshop/collections/aisles?apiKey=' + apiKey, function (data) {
+	$.get('https://api.mongolab.com/api/1/databases/{{your database}}/collections/{{your collection}}?apiKey=' + apiKey, function (data) {
 		var output = '';
 
 		$.each(data, function (key, data) {
@@ -124,7 +125,7 @@ function addDiscount () {
 		percentageDiscount: $('#percentage_discount').val()
 	};
 	$.ajax({
-		url: "https://api.mongolab.com/api/1/databases/groceryshop/collections/discounts?apiKey=" + apiKey,
+		url: "https://api.mongolab.com/api/1/databases/{{your database}}/collections/{{your collection}}?apiKey=" + apiKey,
 		data: JSON.stringify({ "discount": discount }),
 		type: 'POST',
 		contentType: 'application/json',
@@ -139,7 +140,7 @@ function addDiscount () {
 }
 
 function getDiscounts() {
-	$.get("https://api.mongolab.com/api/1/databases/groceryshop/collections/discounts?apiKey=" + apiKey, function (data) {
+	$.get("https://api.mongolab.com/api/1/databases/{{your database}}/collections/{{your collection}}?apiKey=" + apiKey, function (data) {
 		var output = '';
 		$.each(data, function (key, data) {
 			output += '<li class="list-group-item discount">' + ' <div class="pull-left">' + data.discount.discountName + ' | ' + data.discount.aisle + '</div>' + ' <div class="pull-right">' + ' ' + '[' + data.discount.percentageDiscount + ']% Discount ' + ' <a class="btn btn-primary btn-edit-discount" data-discount-id="' + data._id.$oid + '">Edit</a> <a class="btn btn-danger btn-delete-discount" data-discount-id="'+ data._id.$oid +'">Delete</a></div>' + '</li>';
@@ -174,7 +175,7 @@ function editDiscount () {
 
 
 	$.ajax({
-		url: "https://api.mongolab.com/api/1/databases/groceryshop/collections/discounts/" + discountId + "?apiKey=" + apiKey,
+		url: "https://api.mongolab.com/api/1/databases/{{your database}}/collections/{{your collection}}/" + discountId + "?apiKey=" + apiKey,
 		data: JSON.stringify({ "discount": discount }),
 		type: 'PUT',
 		contentType: 'application/json',
@@ -197,7 +198,7 @@ function deleteDiscount () {
 	var discountId = $(this).data('discount-id');
 
 	$.ajax({
-		url: "https://api.mongolab.com/api/1/databases/groceryshop/collections/discounts/" + discountId + "?apiKey=" + apiKey,
+		url: "https://api.mongolab.com/api/1/databases/{{your database}}/collections/{{your collection}}/" + discountId + "?apiKey=" + apiKey,
 		type: 'DELETE',
 		async: true,
 		timeout: 30 * 1000,
